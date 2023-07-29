@@ -1,0 +1,10 @@
+.cardContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardPets{
+    width: 20%;
+    text-align: center;
+    background-color: blue;
+}
