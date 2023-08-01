@@ -13,11 +13,16 @@ mongoose.connect(
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hola");
-});
-
 app.get("/getPets", (req, res) => {
+  petsModel.find().then((err, result) => {
+    if (err) {
+      res.json(err);
+    } else {
+      res.json(result);
+    }
+  });
+});
+app.get("/EditUser", (req, res) => {
   petsModel.find().then((err, result) => {
     if (err) {
       res.json(err);
