@@ -16,7 +16,7 @@ export const UserList = () => {
         {pet.map(({ _id, name, species, age }) => {
           return (
             <>
-              <div className="cardPets">
+              <div key={_id} className="cardPets">
                 <p>Name:{name}</p>
                 <p>Specie:{species}</p>
                 <p>Age:{age}</p>

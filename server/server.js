@@ -32,6 +32,15 @@ app.get("/EditUser", (req, res) => {
   });
 });
 
+app.post("/obtenerdata", (req, res) => {
+  petsModel.find({ _id: req.body._id }).then((err, result) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
 app.post("/createPets", async (req, res) => {
   const newData = req.body;
   console.log(newData);
@@ -39,6 +48,26 @@ app.post("/createPets", async (req, res) => {
   await newPet.save();
   res.json(newData);
 });
+
+app.post("/userupdate", (req, res) => {
+  petsModel
+    .findOneAndUpdate(
+      { _id: req.body._id },
+      {
+        name: req.body.name,
+        species: req.body.species,
+        age: req.body.age,
+      }
+    )
+    .then((docs, err) => {
+      if (!err) {
+        res.send(docs);
+      } else {
+        res.send(err);
+      }
+    });
+});
+
 app.listen("3001", () => {
   console.log(`Server running on port 3001`);
 });
